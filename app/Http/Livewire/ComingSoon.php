@@ -41,7 +41,7 @@ class ComingSoon extends Component
     }
 
     private function formatForView($games){
-        return collect($games)->map(function ($game){
+        return collect($games)->filter()->map(function ($game){
             return collect($game)->merge([
                 'coverImageUrl' => array_key_exists('cover', $game)?str_replace("thumb", "cover_small", $game['cover']['url']):asset('img/ff7.jpg'),
                 'releaseDate' => Carbon::parse($game['first_release_date'])->format('M d, Y')
