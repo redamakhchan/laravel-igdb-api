@@ -71,7 +71,7 @@ class GamesController extends Controller
     private function formatForView($game){
         return collect($game)->merge([
             'coverImageUrl' => array_key_exists('cover', $game)?str_replace("thumb", "cover_big", $game['cover']['url']):asset('img/ff7.jpg'),
-            'genres' => collect($game['genres'])->pluck('name')->implode(', '),
+            'genres' => array_key_exists('genres', $game)?collect($game['genres'])->pluck('name')->implode(', '):"",
             'involvedCompanies' => array_key_exists('involved_companies', $game)?$game['involved_companies'][0]['company']['name']:"",
             'platforms' => array_key_exists('platforms', $game)?collect($game['platforms'])->pluck('abbreviation')->implode(', '):'',
             'memberRating' => array_key_exists('rating', $game)?round($game['rating']).'%':"0%",
