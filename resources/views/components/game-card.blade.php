@@ -2,7 +2,7 @@
     <div class="relative inline-block">
         <a href="{{route('games.show', ['slug'=>$game['slug']])}}">
             <img src="{{$game['coverImageUrl']}}" alt="Game Cover"
-                 class="hover:opacity-75 transition ease-in-out duration-150">
+                 class="hover:opacity-75 transition ease-in-out duration-150 shadow-md">
         </a>
         @if(!is_null($game['rating']))
             <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"

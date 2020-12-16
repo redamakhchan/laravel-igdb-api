@@ -1,4 +1,4 @@
-<div class="game flex">
+<div class="game flex animate-pulse">
     <a href="#">
         <div class="bg-gray-800 w-16 h-20 flex-none"></div>
     </a>

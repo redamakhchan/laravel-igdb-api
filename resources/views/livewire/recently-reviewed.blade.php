@@ -7,7 +7,7 @@
                 <div class="relative flex-none">
                     <a href="{{route('games.show', ['slug'=> $game['slug']])}}">
                         <img src="{{$game['coverImageUrl']}}" alt="Game Cover"
-                             class="w-20 lg:w-48 hover:opacity-75 transition ease-in-out duration-150">
+                             class="w-20 lg:w-48 hover:opacity-75 transition ease-in-out duration-150 shadow-md">
                     </a>
                     @if(array_key_exists('rating', $game))
                         <div  class="absolute bottom-0 right-0 w-16 h-16 bg-gray-900 rounded-full"
@@ -30,7 +30,7 @@
             </div>
         @empty
             @foreach(range(1,3) as $game)
-                <div class="game bg-gray-800 rounded-lg shadow-md flex px-6 py-6">
+                <div class="game bg-gray-800 rounded-lg shadow-md flex px-6 py-6 animate-pulse">
                     <div class="relative flex-none">
                         <a href="#">
                             <div class="bg-gray-700 w-44 h-56"></div>

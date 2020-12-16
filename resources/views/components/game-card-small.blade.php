@@ -1,7 +1,7 @@
 <div class="game flex">
     <a href="{{route('games.show', ['slug'=> $game['slug']])}}">
         <img src="{{$game['coverImageUrl']}}" alt="Game Cover"
-             class="w-16 hover:opacity-75 transition ease-in-out duration-150">
+             class="w-16 hover:opacity-75 transition ease-in-out duration-150 shadow-md">
     </a>
     <div class="ml-4">
         <a href="{{route('games.show', ['slug'=> $game['slug']])}}" class="hover:text-gray-300">{{$game['name']}}</a>
