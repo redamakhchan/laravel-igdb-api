@@ -25,16 +25,28 @@
                 <div class="flex flex-wrap items-center mt-8">
                     <div class="flex items-center">
                         <div class="w-16 h-16 bg-gray-800 rounded-full">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                {{$game['memberRating']}}
+                            <div id="memberRating" class="font-semibold text-xs flex justify-center items-center h-full relative">
+                                @push('scripts')
+                                    @include('partials._rating', [
+                                        'slug' => "memberRating",
+                                        'rating' => $game['memberRating'],
+                                        'event' => null
+                                    ])
+                                @endpush
                             </div>
                         </div>
                         <div class="ml-4 text-xs">Member <br> Score</div>
                     </div>
                     <div class="flex items-center ml-12">
                         <div class="w-16 h-16 bg-gray-800 rounded-full">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                {{$game['criticRating']}}
+                            <div id="criticalRating" class="font-semibold text-xs flex justify-center items-center h-full relative">
+                                @push('scripts')
+                                    @include('partials._rating', [
+                                        'slug' => "criticalRating",
+                                        'rating' => $game['criticRating'],
+                                        'event' => null
+                                    ])
+                                @endpush
                             </div>
                         </div>
                         <div class="ml-4 text-xs">Critic <br> Score</div>

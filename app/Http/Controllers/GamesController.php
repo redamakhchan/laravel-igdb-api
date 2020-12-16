@@ -74,8 +74,8 @@ class GamesController extends Controller
             'genres' => array_key_exists('genres', $game)?collect($game['genres'])->pluck('name')->implode(', '):"",
             'involvedCompanies' => array_key_exists('involved_companies', $game)?$game['involved_companies'][0]['company']['name']:"",
             'platforms' => array_key_exists('platforms', $game)?collect($game['platforms'])->pluck('abbreviation')->implode(', '):'',
-            'memberRating' => array_key_exists('rating', $game)?round($game['rating']).'%':"0%",
-            'criticRating' => array_key_exists('aggregated_rating', $game)?round($game['aggregated_rating']).'%':"0%",
+            'memberRating' => array_key_exists('rating', $game)?round($game['rating']):"0",
+            'criticRating' => array_key_exists('aggregated_rating', $game)?round($game['aggregated_rating']):"0",
             'trailer' => array_key_exists('videos', $game)?"https://youtube.com/watch/".$game['videos'][0]['video_id']:null,
             'screenshots' => array_key_exists('screenshots', $game)?collect($game['screenshots'])->map(function ($screenshot){
                 return [
@@ -86,7 +86,7 @@ class GamesController extends Controller
             'similarGames' => collect($game['similar_games'])->map(function ($game){
                 return collect($game)->merge([
                     'coverImageUrl' => array_key_exists('cover', $game)?str_replace("thumb", "cover_big", $game['cover']['url']):asset('img/ff7.jpg'),
-                    'rating' => array_key_exists('rating', $game)?round($game['rating']).'%':null,
+                    'rating' => array_key_exists('rating', $game)?round($game['rating']):null,
                     'platforms' => array_key_exists('platforms', $game)?collect($game['platforms'])->pluck('abbreviation')->implode(', '):'',
                 ]);
             })->take(6),
