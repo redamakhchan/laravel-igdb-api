@@ -10,9 +10,9 @@
                              class="w-20 lg:w-48 hover:opacity-75 transition ease-in-out duration-150">
                     </a>
                     @if(array_key_exists('rating', $game))
-                        <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-900 rounded-full"
+                        <div  class="absolute bottom-0 right-0 w-16 h-16 bg-gray-900 rounded-full"
                              style="right: -20px;bottom: -20px">
-                            <div class="font-semibold text-xs flex justify-center items-center h-full">{{$game['rating']}}</div>
+                            <div id="review_{{$game['slug']}}" class="font-semibold text-xs flex justify-center items-center h-full"></div>
                         </div>
                     @endif
                 </div>
@@ -51,3 +51,9 @@
         @endforelse
     </div>
 </div>
+
+@push('scripts')
+    @include('partials._rating', [
+        'event' => 'reviewGameWithRatingAdded'
+    ])
+@endpush

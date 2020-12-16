@@ -34,6 +34,15 @@ class PopularGames extends Component
             ->json();
 
         $this->popularGames = $this->formatForView($popularGamesUnformatted);
+
+        collect($this->popularGames)->filter(function ($game) {
+            return $game['rating'];
+        })->each(function ($game) {
+            $this->emit('gameWithRatingAdded', [
+                'slug' => $game['slug'],
+                'rating' => $game['rating'] / 100
+            ]);
+        });
     }
 
     public function render()
@@ -45,7 +54,7 @@ class PopularGames extends Component
         return collect($games)->map(function ($game){
             return collect($game)->merge([
                 'coverImageUrl' => array_key_exists('cover', $game)?str_replace("thumb", "cover_big", $game['cover']['url']):asset('img/ff7.jpg'),
-                'rating' => array_key_exists('rating', $game)?round($game['rating']).'%':null,
+                'rating' => array_key_exists('rating', $game)?round($game['rating']):null,
                 'platforms' => collect($game['platforms'])->pluck('abbreviation')->implode(', '),
             ]);
         })->toArray();
