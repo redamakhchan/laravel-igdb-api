@@ -76,7 +76,7 @@ class GamesController extends Controller
             'platforms' => array_key_exists('platforms', $game)?collect($game['platforms'])->pluck('abbreviation')->implode(', '):'',
             'memberRating' => array_key_exists('rating', $game)?round($game['rating']):"0",
             'criticRating' => array_key_exists('aggregated_rating', $game)?round($game['aggregated_rating']):"0",
-            'trailer' => array_key_exists('videos', $game)?"https://youtube.com/watch/".$game['videos'][0]['video_id']:null,
+            'trailer' => array_key_exists('videos', $game)?"https://youtube.com/embed/".$game['videos'][0]['video_id']:null,
             'screenshots' => array_key_exists('screenshots', $game)?collect($game['screenshots'])->map(function ($screenshot){
                 return [
                     'big' => str_replace("thumb", "screenshot_big", $screenshot['url']),
