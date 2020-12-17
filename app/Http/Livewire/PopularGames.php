@@ -22,12 +22,13 @@ class PopularGames extends Component
             'Authorization' => config('services.igdb.access-token'),
         ])
             ->withBody("
-                    fields name, cover.url, first_release_date, platforms.abbreviation, rating, slug;
+                    fields name, cover.url, first_release_date, platforms.abbreviation, total_rating_count, rating, slug;
                     where platforms = (48,49,130,6)
                     & (first_release_date >= {$before}
-                    & first_release_date < {$after});
+                    & first_release_date < {$after}
+                    & total_rating_count > 5);
                     where rating != null;
-                    sort rating desc;
+                    sort total_rating_count desc;
                     limit 12;
             ", "text/plain")
             ->post(config('services.igdb.api-url'))
